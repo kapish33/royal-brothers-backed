@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon src/server",
-    "gacp": "git add && git commit -m \"commit\" && git push"
+    "ga": "git add src/ && git add package.json && git add package-lock.json && git add README.md && git add .env "
   },
   "keywords": [],
   "author": "",
