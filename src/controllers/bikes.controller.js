@@ -9,6 +9,7 @@ router.post("/", authenticater, async (req, res) => {
     const bike = await Bikes.create({
       name: req.body.name,
       image: req.body.image,
+      hourPrice: req.body.hourPrice,
     });
     return res.status(201).json({ Bikes: bike });
   } catch (e) {
