@@ -5,10 +5,12 @@ const productController = require("./controllers/product.controller");
 const locationController = require("./controllers/location.controller");
 const bikeController = require("./controllers/bikes.controller");
 const paymentController = require("./controllers/payment.conroller");
+const cors = require("cors");
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 // app.use("/users", userController) // /register /login
 app.post("/register", register);
