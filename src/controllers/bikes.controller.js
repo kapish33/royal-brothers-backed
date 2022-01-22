@@ -21,5 +21,9 @@ router.get("/", async (req, res) => {
   const locations = await Bikes.find().lean().exec();
   return res.send(locations);
 });
+router.get("/:id", async (req, res) => {
+  const location = await Bikes.findById(req.params.id).lean().exec();
+  return res.send(location);
+});
 
 module.exports = router;
