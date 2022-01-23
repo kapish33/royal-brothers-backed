@@ -22,8 +22,12 @@ router.get("/", async (req, res) => {
   return res.send(locations);
 });
 router.get("/:id", async (req, res) => {
-  const location = await Bikes.findById(req.params.id).lean().exec();
-  return res.send(location);
+  try {
+    const location = await Bikes.findById(req.params.id).lean().exec();
+    return res.send(location);
+  } catch (e) {
+    return res.status(500).json({ status: "failed", message: e.message });
+  }
 });
 
 module.exports = router;
