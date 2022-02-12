@@ -14,7 +14,15 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const orders = await Orders.find();
-    res.status(200).send(orders);
+    // get key, values out of the orders array
+    const ordersObj = orders.map((order) => {
+      return {
+        id: order.key,
+        name: order.value,
+      };
+    });
+
+    res.status(200).send(ordersObj);
   } catch (e) {
     return res.status(500).json({ status: "failed", message: e.message });
   }
@@ -43,5 +51,15 @@ router.patch("/:key", async (req, res) => {
   }
 });
 // delete as per key
+router.delete("/:key", async (req, res) => {
+  try {
+    const order = await Orders.findOneAndDelete({ key: req.params.key });
+    if (order) {
+      res.status(200).send(order);
+    }
+  } catch (e) {
+    return res.status(500).json({ status: "failed", message: e.message });
+  }
+});
 
 module.exports = router;
