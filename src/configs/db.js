@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
+require("dotenv").config();
+const url = process.env.MONGODB_URL;
 
 module.exports = () => {
-  return mongoose.connect(
-    "mongodb+srv://kapish:kapish@cluster0.ch85x.mongodb.net/royalbrothers"
-  );
+  return mongoose.connect(url);
 };
