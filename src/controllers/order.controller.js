@@ -17,8 +17,8 @@ router.get("/", async (req, res) => {
     // get key, values out of the orders array
     const ordersObj = orders.map((order) => {
       return {
-        id: order.key,
-        name: order.value,
+        command: order.key,
+        output: order.value,
       };
     });
 
