@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 
 const orders = new Schema(
   {
-    key: { type: String, required: true },
+    key: { type: String, required: true, unique: true },
     value: { type: String, required: true, unique: true },
   },
   {
