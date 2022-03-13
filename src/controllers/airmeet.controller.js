@@ -28,4 +28,13 @@ router.patch("/:id", async (req, res) => {
     res.json({ message: err });
   }
 });
+// get all data which is highlighted
+router.get("/highlight", async (req, res) => {
+  try {
+    const airmeets = await Airmeet.find({ Highlight: true });
+    res.json({ airmeets });
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
 module.exports = router;
