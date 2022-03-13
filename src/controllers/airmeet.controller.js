@@ -1,4 +1,5 @@
 const express = require("express");
+const { route } = require("..");
 const Airmeet = require("../models/airmeet.modal");
 const router = express.Router();
 router.get("/", async (req, res) => {
@@ -33,6 +34,15 @@ router.get("/highlight", async (req, res) => {
   try {
     const airmeets = await Airmeet.find({ Highlight: true });
     res.json({ airmeets });
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
+router.delete("/:id", async (req, res) => {
+  try {
+    const airmeet = await Airmeet.findById(req.params.id);
+    await airmeet.remove();
+    res.json({ message: "Deleted" });
   } catch (err) {
     res.json({ message: err });
   }
