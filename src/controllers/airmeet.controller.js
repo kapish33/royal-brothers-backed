@@ -17,5 +17,15 @@ router.get("/", async (req, res) => {
     res.json({ message: err });
   }
 });
-
+// make toggle highlight as per id
+router.patch("/:id", async (req, res) => {
+  try {
+    const airmeet = await Airmeet.findById(req.params.id);
+    airmeet.Highlight = !airmeet.Highlight;
+    await airmeet.save();
+    res.json({ airmeet });
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
 module.exports = router;
