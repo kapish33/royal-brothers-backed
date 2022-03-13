@@ -11,7 +11,8 @@ router.get("/", async (req, res) => {
       .skip(skip)
       .limit(limit)
       .sort({ Description: 1 });
-    res.json(airmeets);
+    const size = await Airmeet.countDocuments();
+    res.json({ airmeets, size });
   } catch (err) {
     res.json({ message: err });
   }
